@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd `dirname $0`
+
+echo source `pwd`/.vimrc >> ~/.vimrc
+echo source `pwd`/.zshrc >> ~/.zshrc
+cp -i `pwd`/.gitconfig ~/.gitconfig
