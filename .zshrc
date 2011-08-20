@@ -28,6 +28,8 @@ setopt correct
 
 alias ls='ls -G'
 alias ll='ls -l'
+alias ql='qlmanage -p "$@" >& /dev/null'
+alias imgsize="mdls -name kMDItemPixelWidth -name kMDItemPixelHeight"
 
 export EDITOR=vim
 export LANG=ja_JP.UTF-8
