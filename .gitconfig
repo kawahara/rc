@@ -1,0 +1,21 @@
+[user]
+  name = Shogo Kawahara
+  email = kawahara@bucyou.net
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf     = false
+  editor       = vim 
+[alias]
+  b    = branch
+  f    = fetch
+  l    = log --graph --pretty=full --stat
+  ci   = commit -v
+  sh   = show -p --stat
+  st   = status
+  stat = status
+  sw   = checkout
+  di   = diff
+[color]
+  diff   = auto
+  status = auto
+  branch = auto
