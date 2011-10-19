@@ -19,14 +19,14 @@ compinit
 # prompt
 autoload colors
 colors
-PROMPT="%{$fg[green]%}[%n@%m %1~]%(!.#.$)%{$reset_color%} "
+PROMPT="%{$fg_bold[green]%}[%n@%m %1~]%(!.#.$)%{$reset_color%} "
 #RPROMPT=""
 
 setopt auto_pushd # cd -[tab]
 setopt pushd_ignore_dups
 setopt correct
 
-alias ls='ls -G'
+alias ls='ls -G --color'
 alias ll='ls -l'
 alias ql='qlmanage -p "$@" >& /dev/null'
 alias imgsize="mdls -name kMDItemPixelWidth -name kMDItemPixelHeight"
@@ -36,3 +36,13 @@ export LANG=ja_JP.UTF-8
 export TZ='Asia/Tokyo'
 
 function chpwd() { pwd; ls }
+
+# http://d.hatena.ne.jp/zenpou/20080117/1200539192
+function preexec () {
+    if [ $TERM = "screen" ]; then
+        1="$1 "
+        cname=`echo $1 | cut -f1 -d ' '`
+        lang=`echo $LANG | sed "s/.\+\.\(.\).\+/\1/"`
+        echo -ne "\ek$cname($lang)\e\\"
+    fi
+}
