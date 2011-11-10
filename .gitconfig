@@ -13,7 +13,6 @@
   sh   = show -p --stat
   st   = status
   stat = status
-  sw   = checkout
   di   = diff
 [color]
   diff   = auto

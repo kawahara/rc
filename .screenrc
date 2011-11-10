@@ -1,0 +1,16 @@
+defscrollback 10000
+
+defutf8 on
+defkanji utf-8
+encoding utf-8 utf-8
+defencoding utf-8
+
+escape ^Tt
+autodetach on
+
+vbell off
+startup_message off
+hardstatus alwayslastline "%{= ck}[%m/%d %02c:%s] %{gW} %-w%{= wk}%n %t%{-}%+w %=%{ck}$USER@$HOSTNAME[$LANG] "
+
+bind u eval "encoding utf-8" "stuff 'export LANG=ja_JP.UTF-8\012'"
+bind e eval "encoding eucJP" "stuff 'export LANG=ja_JP.EUC-JP\012'"

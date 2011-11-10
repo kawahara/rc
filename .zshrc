@@ -36,13 +36,3 @@ export LANG=ja_JP.UTF-8
 export TZ='Asia/Tokyo'
 
 function chpwd() { pwd; ls }
-
-# http://d.hatena.ne.jp/zenpou/20080117/1200539192
-function preexec () {
-    if [ $TERM = "screen" ]; then
-        1="$1 "
-        cname=`echo $1 | cut -f1 -d ' '`
-        lang=`echo $LANG | sed "s/.\+\.\(.\).\+/\1/"`
-        echo -ne "\ek$cname($lang)\e\\"
-    fi
-}

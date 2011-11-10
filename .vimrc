@@ -29,6 +29,9 @@ nmap ,l :call SyntaxCheck()<CR>
 nmap ,e :call ExecuteCode()<CR>
 nmap ,t :call ExecuteTest()<CR>
 
+" print date time
+nmap ,d :call ExecuteDate()<CR>
+
 function SyntaxCheck()
   execute ":w"
   if ("php" == &filetype)
@@ -54,6 +57,11 @@ function ExecuteTest()
   if ("php" == &filetype)
     execute ":! phpunit --colors %"
   end
+endfunction
+
+
+function ExecuteDate()
+  execute ":r! date"
 endfunction
 
 " space可視化の呪文 (via: http://d.hatena.ne.jp/potappo2/20061107/1162862536)
