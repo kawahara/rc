@@ -26,7 +26,7 @@ setopt auto_pushd # cd -[tab]
 setopt pushd_ignore_dups
 setopt correct
 
-alias ls='ls -G --color'
+alias ls='ls --color'
 alias ll='ls -l'
 alias ql='qlmanage -p "$@" >& /dev/null'
 alias imgsize="mdls -name kMDItemPixelWidth -name kMDItemPixelHeight"
