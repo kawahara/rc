@@ -1,7 +1,3 @@
-export PATH=$HOME/bin:/opt/local/bin:/opt/local/sbin:$PATH
-export MANPATH=/opt/local/share/man:$MANPATH
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -26,7 +22,6 @@ setopt auto_pushd # cd -[tab]
 setopt pushd_ignore_dups
 setopt correct
 
-alias ls='ls --color'
 alias ll='ls -l'
 alias ql='qlmanage -p "$@" >& /dev/null'
 alias imgsize="mdls -name kMDItemPixelWidth -name kMDItemPixelHeight"
