@@ -8,8 +8,6 @@ endif
 
 set ambiwidth=double
 set backspace=2
-set tabstop=2
-set shiftwidth=2
 set expandtab
 
 set ff=unix
@@ -24,6 +22,10 @@ syntax on
 filetype plugin on
 filetyp  indent on
 
+augroup filetypedetect
+    au! BufRead,BufNewFile capfile,Capfile setfiletype ruby
+augroup END
+
 " シンタックスチェック機能
 nmap ,l :call SyntaxCheck()<CR>
 nmap ,e :call ExecuteCode()<CR>
@@ -31,6 +33,10 @@ nmap ,t :call ExecuteTest()<CR>
 
 " print date time
 nmap ,d :call ExecuteDate()<CR>
+
+" change tab width
+nmap ,4 :call Tab4()<CR>
+nmap ,2 :call Tab2()<CR>
 
 function SyntaxCheck()
   execute ":w"
@@ -59,10 +65,21 @@ function ExecuteTest()
   end
 endfunction
 
-
 function ExecuteDate()
   execute ":r! date"
 endfunction
+
+function Tab4()
+  set tabstop=4
+  set shiftwidth=4
+endfunction
+
+function Tab2()
+  set tabstop=2
+  set shiftwidth=2
+endfunction
+
+call Tab4()
 
 " space可視化の呪文 (via: http://d.hatena.ne.jp/potappo2/20061107/1162862536)
 syntax match InvisibleJISX0208Space "　" display containedin=ALL
