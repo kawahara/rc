@@ -38,6 +38,10 @@ nmap ,d :call ExecuteDate()<CR>
 nmap ,4 :call Tab4()<CR>
 nmap ,2 :call Tab2()<CR>
 
+" change expandtab-noexpandtab
+nmap ,- :call SetNoExpandTab()<CR>
+nmap ,= :call SetExpandTab()<CR>
+
 function SyntaxCheck()
   execute ":w"
   if ("php" == &filetype)
@@ -46,6 +50,8 @@ function SyntaxCheck()
     echo system("ruby -c ".bufname(""))
   elseif ("yaml" == &filetype)
     echo system('ruby -ryaml -e "begin;YAML::load(open(\"'.bufname("").'\",\"r\").read); puts \"ok\"; rescue ArgumentError => e; puts e; end"')
+  elseif ("javascript" == &filetype)
+    echo system("nodelint ".bufname(""))
   end
 endfunction
 
@@ -79,7 +85,16 @@ function Tab2()
   set shiftwidth=2
 endfunction
 
+function SetNoExpandTab()
+  set noexpandtab
+endfunction
+
+function SetExpandTab()
+  set expandtab
+endfunction
+
 call Tab4()
+call SetExpandTab()
 
 " space可視化の呪文 (via: http://d.hatena.ne.jp/potappo2/20061107/1162862536)
 syntax match InvisibleJISX0208Space "　" display containedin=ALL
