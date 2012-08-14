@@ -26,7 +26,6 @@ augroup filetypedetect
     au! BufRead,BufNewFile capfile,Capfile setfiletype ruby
 augroup END
 
-" シンタックスチェック機能
 nmap ,l :call SyntaxCheck()<CR>
 nmap ,e :call ExecuteCode()<CR>
 nmap ,t :call ExecuteTest()<CR>
@@ -42,6 +41,22 @@ nmap ,2 :call Tab2()<CR>
 nmap ,- :call SetNoExpandTab()<CR>
 nmap ,= :call SetExpandTab()<CR>
 
+" change js code checker
+nmap ,js :call ToggleJsCheker()<CR>
+
+let g:jschecker = "nodelint"
+function ToggleJsCheker()
+    if ("nodelint" == g:jschecker)
+        let g:jschecker = "jshint"
+    elseif ("jshint" == g:jschecker)
+        let g:jschecker = "jslint"
+    elseif ("jslint" == g:jschecker)
+        let g:jschecker = "nodelint"
+    end
+
+    echo "Change Js checker to"g:jschecker
+endfunction
+
 function SyntaxCheck()
   execute ":w"
   if ("php" == &filetype)
@@ -51,7 +66,7 @@ function SyntaxCheck()
   elseif ("yaml" == &filetype)
     echo system('ruby -ryaml -e "begin;YAML::load(open(\"'.bufname("").'\",\"r\").read); puts \"ok\"; rescue ArgumentError => e; puts e; end"')
   elseif ("javascript" == &filetype)
-    echo system("nodelint ".bufname(""))
+    echo system(g:jschecker." ".bufname(""))
   end
 endfunction
 
@@ -61,6 +76,8 @@ function ExecuteCode()
     execute ":! php %"
   elseif ("ruby" == &filetype)
     execute ":! ruby %"
+  elseif ("javascript" == &filetype)
+    execute ":! node %"
   end
 endfunction
 
